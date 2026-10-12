@@ -1,0 +1,4 @@
+[build]
+  base = "mobitech-hub"
+  command = "npm run build"
+  publish = ".next"

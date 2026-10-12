@@ -120,8 +120,12 @@ still set (Project Settings → Edge Functions → Secrets).
 
 **2. Netlify**
 - New site from Git → connect this repo.
-- Build command `npm run build`, publish directory `.next` (already set in
-  `netlify.toml`, along with the `@netlify/plugin-nextjs` plugin).
+- The deployable application is in `mobitech-hub/`. The ZIP files are archived
+  copies, not directories Netlify can build directly.
+- Use base directory `mobitech-hub`, build command `npm run build`, and publish
+  directory `.next`, as configured in the root `netlify.toml`.
+- Netlify automatically detects Next.js and installs its runtime adapter;
+  no separate plugin declaration or single-page-app redirect is required.
 - Add environment variables (Site settings → Environment variables):
   - `NEXT_PUBLIC_SUPABASE_URL`
   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
@@ -133,8 +137,9 @@ still set (Project Settings → Edge Functions → Secrets).
 
 **3. Local dev**
 ```bash
+cd mobitech-hub
 npm install
-cp .env.example .env.local   # fill in the two Supabase values
+# Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in your environment.
 npm run dev
 ```
 
